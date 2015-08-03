@@ -1,7 +1,8 @@
 # Star SUDOKU
 
-This is an electronic representation of the currently very popular puzzle game Sudoku.
+## TL;DR
 
+Java version of the popular Sudoku puzzle game. Intends to provide an advanced user interface. With Star SUDOKU you can create random sudoku grids or design your own to play/solve. It can be used as sudoku generator, solver. You can export sudoku grids as PDF, RTF, HTML, XML and CSV.
 
 ### This Readme includes:
 
