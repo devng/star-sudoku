@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: res/lib/itext-1.4.4.jar
+Main-Class: StarSUDOKUMain
+
