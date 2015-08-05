@@ -1,3 +1,15 @@
+2015-08-05
+----------
+* Star SUDOKU ver. 1.0
+* Use Gradle as a build system
+* Use the standard directory layout
+* Change the package name to com.devng.starsudoku
+* Adjust the documentation
+* Add Launch4J configuration
+* Small code adjustments
+* Remove the web page source folder, since there is no web page anymore
+* Update the .gitignore file
+
 2015-08-03
 ----------
 * Move the project from sourceforge.net to GitHub
@@ -19,10 +31,9 @@
 * Export to XML and HTML functions added
 * Design mode is now working
 * The game starts with the Draw helping line mode on
-* Bug fixed cells wich are default or not editable are not entered in the undo stack
-* Bug fixed when finishing a sudoku puzzel undo it is now possible
-* Bug fixed when finishing a sudoku grid all notes will be delted properly
-
+* Bug fixed cells which are default or not editable are not entered in the undo stack
+* Bug fixed when finishing a sudoku puzzle undo it is now possible
+* Bug fixed when finishing a sudoku grid all notes will be deleted properly
 
 2006-07-27
 ----------
@@ -37,7 +48,7 @@
 2006-07-23
 ----------
 * Star SUDOKU ver. 0.7.5 beta
-* Undo and redo function added (up to 100 corrcctions possible )
+* Undo and redo function added (up to 100 corrections possible)
 * 2 ways of entering a number in a cell now possible
   - Select number then cell
   - Select cell then number
@@ -54,7 +65,7 @@
 * If JRE version is older than 1.5.0 the program will exit with an Error message
 * Fixed: Bug when solving a puzzle with incorrect entered numbers by user
 * Fixed: Current difficulty on loading
-* Fixed: Error message when user tries to load incorret .ssud file
+* Fixed: Error message when user tries to load incorrect .ssud file
 * Fixed: Message when Sudoku grid is already solved and the solve button is pushed
 * Readme.txt and WhatsNew.txt included 
 
