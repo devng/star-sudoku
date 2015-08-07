@@ -39,12 +39,12 @@ jar {
 
 // Windows wrapper configuration to generate windows exe file with Launch4J
 task launch4jConfig(type: Copy) {
-    from 'src/main/resources/launch4j.xml'
+    from 'src/main/resources/launch4j/launch4j.xml'
     into 'build/launch4j'
     expand(
             JAR_FILE: project.jar.archivePath,
             VERSION: project.version,
-            ICON: file('src/main/resources/sudoku-icon.ico')
+            ICON: file('src/main/resources/launch4j/sudoku-icon.ico')
     )
 }
 
@@ -63,4 +63,3 @@ task launch4j(type: Exec, dependsOn: [':jar', ':launch4jConfig']) {
         commandLine launch4jDir + "/launch4j", launch4jCfg
     }
 }
-

@@ -14,7 +14,7 @@ public class Export {
         StringBuilder sb = new StringBuilder(3000);
         sb.append("<html>\n");
         sb.append("<head>\n");
-        sb.append("\t<title>Star SUDOKU</title>\n");
+        sb.append("\t<title>" + GV.NAME + "</title>\n");
         sb.append("\t<style type=\"text/css\">\n");
         sb.append("\t\ttd {\n");
         sb.append("\t\t\tfont-weight: bold;\n");
@@ -42,7 +42,7 @@ public class Export {
         }
 
         sb.append("</table>\n");
-        sb.append("<p>Generated with Star SUDOKU (<a href=\"" + GV.WEB_PAGE + "\" target=\"_blank\">" + GV.WEB_PAGE + "</a>)</p>\n");
+        sb.append("<p>Generated with " + GV.NAME + " (<a href=\"" + GV.WEB_PAGE + "\" target=\"_blank\">" + GV.WEB_PAGE + "</a>)</p>\n");
         sb.append("</body>\n");
         sb.append("</html>\n");
 
@@ -147,7 +147,7 @@ public class Export {
             sb.append("\\cell\\pard\\plain \\intbl\\ltrpar\\s10\\qc\\rtlch\\af9\\afs36\\lang255\\ltrch\\dbch\\af6\\langfe255\\hich\\fs36\\lang1031\\loch\\fs36\\lang1031 ");
         }
         sb.append("\\cell\\row\\pard \\pard\\plain \\ltrpar\\s1\\ql\\rtlch\\af9\\afs24\\lang255\\ltrch\\dbch\\af6\\langfe255\\hich\\fs24\\lang1031\\loch\\fs24\\lang1031 ");
-        sb.append("\\par \\pard\\plain \\ltrpar\\s1\\cf0{\\*\\hyphen2\\hyphlead2\\hyphtrail2\\hyphmax0}\\ql {\\rtlch \\ltrch\\loch\\f1\\fs20\\lang1031\\i0\\b0 Generated with Star SUDOKU (" + GV.WEB_PAGE + ")}\\par }");
+        sb.append("\\par \\pard\\plain \\ltrpar\\s1\\cf0{\\*\\hyphen2\\hyphlead2\\hyphtrail2\\hyphmax0}\\ql {\\rtlch \\ltrch\\loch\\f1\\fs20\\lang1031\\i0\\b0 Generated with " + GV.NAME + " (" + GV.WEB_PAGE + ")}\\par }");
         return sb.toString();
     }
 

@@ -47,7 +47,7 @@ public class ExportPDF {
             document.add(table);
             //document.add(new Paragraph("\n"));
             Paragraph p = new Paragraph(
-                    new Chunk("Generated with Star SUDOKU (" + GV.WEB_PAGE + ")",
+                    new Chunk("Generated with " + GV.NAME + " (" + GV.WEB_PAGE + ")",
                             new Font(Font.TIMES_ROMAN, 8)));
             p.setAlignment(Paragraph.ALIGN_CENTER);
             document.add(p);

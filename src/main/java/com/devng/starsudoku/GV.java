@@ -6,11 +6,11 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 /**
- * Global Variabls
+ * Global Variables
  */
 public class GV {
 
-    public static final String NAME = "Star SUDOKU ";
+    public static final String NAME = "StarSUDOKU";
 
     // Keep in sync with the build.gradle
     public static final String VERSION = "1.0";
@@ -84,19 +84,22 @@ public class GV {
 
     //LOOK AND FEEL
     public enum LAF {
-        METAL, SYSTEM
+        NIMBUS("javax.swing.plaf.nimbus.NimbusLookAndFeel"),
+
+        METAL("javax.swing.plaf.metal.MetalLookAndFeel"),
+
+        SYSTEM(UIManager.getSystemLookAndFeelClassName());
+
+        private final String lookAndFeelClassName;
+
+        LAF(String lookAndFeelClassName) {
+            this.lookAndFeelClassName = lookAndFeelClassName;
+        }
+
+        public String getLookAndFeelClassName() {
+            return lookAndFeelClassName;
+        }
     }
 
-    ;
-
-    public static boolean isWin = false;
-
-    public final static String METAL = "javax.swing.plaf.metal.MetalLookAndFeel";
-
-    public final static String SYSTEM = UIManager.getSystemLookAndFeelClassName();
-
-    //public final static String MOTIF = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-    //public final static String WIN = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-    //public final static String GTK = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel"; 
-
+    public static boolean useSystemLAF = false;
 }

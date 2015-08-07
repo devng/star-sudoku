@@ -223,7 +223,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
 
 
     public SudokuMainFrame() {
-        super(GV.NAME + GV.VERSION);
+        super(GV.NAME + " " + GV.VERSION);
 
         bHUp = new ButtonHandlerUp();
         bHDown = new ButtonHandlerDown();
@@ -456,7 +456,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
 
                 mOptions.addSeparator();
 
-                opHLines = new JCheckBoxMenuItem("Draw helping lines", true);
+                opHLines = new JCheckBoxMenuItem("Draw helping lines", false);
                 opHLines.addItemListener(cH);
                 opHLines.setMnemonic('D');
                 mOptions.add(opHLines);
@@ -476,13 +476,13 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
             menu.add(mLAF);
             {
                 ButtonGroup bGr4 = new ButtonGroup();
-                lafMetal = new JRadioButtonMenuItem("Java Look And Feel", !GV.isWin);
+                lafMetal = new JRadioButtonMenuItem("Java Look And Feel", !GV.useSystemLAF);
                 lafMetal.addActionListener(mH);
                 lafMetal.setMnemonic('M');
                 mLAF.add(lafMetal);
                 bGr4.add(lafMetal);
 
-                lafSys = new JRadioButtonMenuItem("System Look And Feel", GV.isWin);
+                lafSys = new JRadioButtonMenuItem("System Look And Feel", GV.useSystemLAF);
                 lafSys.addActionListener(mH);
                 lafSys.setMnemonic('S');
                 mLAF.add(lafSys);
@@ -659,7 +659,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
             }
 
             public String getDescription() {
-                return GV.NAME + "Save File (*.ssud)";
+                return GV.NAME + " Save File (*.ssud)";
             }
         });
         fc.setAcceptAllFileFilterUsed(false);
@@ -836,7 +836,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
         about = new JPanel();
         about.setLayout(new BoxLayout(about, BoxLayout.Y_AXIS));
 
-        about.add(new JLabel("<HTML><B>" + GV.NAME + GV.VERSION + "</B> Copyright (c) 2006 - 2015 Nikolay G. Georgiev</HTML>"));
+        about.add(new JLabel("<HTML><B>" + GV.NAME + " " + GV.VERSION + "</B> Copyright (c) 2006 - 2015 Nikolay Georgiev</HTML>"));
 
         about.add(Box.createVerticalStrut(10));
 
@@ -845,7 +845,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
 
         about.add(Box.createVerticalStrut(20));
 
-        about.add(new JLabel("<HTML>This program is released under the Mozilla Public License 2.0 .<BR> A copy of this is included with your copy of Star SUDOKU<BR>and can also be found at:</HTML>"));
+        about.add(new JLabel("<HTML>This program is released under the Mozilla Public License 2.0 .<BR> A copy of this is included with your copy of StarSUDOKU<BR>and can also be found at:</HTML>"));
         about.add(new HTMLLink("https://www.mozilla.org/MPL/2.0/", false));
 
 
@@ -855,7 +855,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
         about.add(new HTMLLink("http://www.lowagie.com/iText/", false));
     }
 
-    private void generateNewSud() {
+    public void generateNewSudoku() {
         if (guiGrid.isPaintPause) {
             resumePause();
         }
@@ -1213,15 +1213,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
 
     private void setLookAndFeel(GV.LAF laf) {
         try {
-            switch (laf) {
-                case METAL:
-                    UIManager.setLookAndFeel(GV.METAL);
-                    break;
-                case SYSTEM:
-                    UIManager.setLookAndFeel(GV.SYSTEM);
-                    break;
-            }
-
+            UIManager.setLookAndFeel(laf.getLookAndFeelClassName());
             SwingUtilities.updateComponentTreeUI(this);
             this.pack();
         } catch (Exception e) {
@@ -1254,7 +1246,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
                 JButton tmp = (JButton) e.getSource();
 
                 if (tmp == bUp[0]) {
-                    generateNewSud();
+                    generateNewSudoku();
                 } else if (tmp == bUp[1]) {
                     doNewDesign();
                 } else if (tmp == bUp[2]) {
@@ -1334,7 +1326,7 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
                 JMenuItem tmp = (JMenuItem) e.getSource();
 
                 if (tmp == sudNew) {
-                    generateNewSud();
+                    generateNewSudoku();
                 } else if (tmp == sudOpen) {
                     doLoad();
                 } else if (tmp == sudSaveAs) {
@@ -1359,8 +1351,6 @@ public class SudokuMainFrame extends JFrame implements SudokuObserver {
                     ne = NumberEntry.sctn;
                 } else if (tmp == lafMetal) {
                     setLookAndFeel(GV.LAF.METAL);
-                } else if (tmp == lafSys) {
-                    setLookAndFeel(GV.LAF.SYSTEM);
                 } else if (tmp == lafSys) {
                     setLookAndFeel(GV.LAF.SYSTEM);
                 } else if (tmp == helpAbout) {

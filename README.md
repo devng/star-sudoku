@@ -1,9 +1,9 @@
-# Star SUDOKU
+# StarSUDOKU
 
 ## TL;DR
 
 Java version of the popular Sudoku puzzle game. Intends to provide an advanced user interface.
-With Star SUDOKU you can create random sudoku grids or design your own to play/solve.
+With StarSUDOKU you can create random sudoku grids or design your own to play/solve.
 It can be used as sudoku generator, solver. You can export sudoku grids as PDF, RTF, HTML, XML and CSV.
 
 ![](screen1.png?raw=true)
@@ -13,8 +13,10 @@ It can be used as sudoku generator, solver. You can export sudoku grids as PDF, 
 ### This Readme includes:
 
 1. System requirements
-2. How to build Star SUDOKU
-3. Running Star SUDOKU on your system
+2. How to build StarSUDOKU
+  * How to build an Windows EXE
+  * How to extend StarSUDOKU
+3. Running StarSUDOKU
 4. Features
 5. Instructions
   * Entering numbers in a cell
@@ -31,15 +33,15 @@ It can be used as sudoku generator, solver. You can export sudoku grids as PDF, 
 1. System requirements
 ----------------------
 
-Star SUDOKU is written in JAVA programming language, this means that it can be run on any Operating System which has JAVA Runtime Environment (JRE).
+StarSUDOKU is written in JAVA programming language, this means that it can be run on any Operating System which has JAVA Runtime Environment (JRE).
 
 You need JRE 1.7.0 (also know as JRE 7) or above. You can download JRE for free at www.java.com
 
-2. How to build Star SUDOKU
+2. How to build StarSUDOKU
 ---------------------------
-If you want to build Star SUDOKU on your local machine you need to install the Java Development Kit (JDK). You need JDK 1.7.0 or above.
+If you want to build StarSUDOKU on your local machine you need to install the Java Development Kit (JDK). You need JDK 1.7.0 or above.
 
-Star SUDOKU uses the Gradle build system, you can build the project locally just by typing the following in the console:
+StarSUDOKU uses the Gradle build system, you can build the project locally just by typing the following in the console:
 
 ```
 ./gradlew build
@@ -52,7 +54,19 @@ On Windows use:
 
 The generated jar file can be found in the folder _build/libs_
 
-### How to extend Star SUDOKU
+### How to build an Windows EXE
+The Gradle build script provides a way to build an Windows executable. You can even do this on a non-Windows machine. For that purpose you need an external application called
+[Launch4j](http://launch4j.sourceforge.net/). Download it and install it on your local machine. The version used to test this feature is 3.8, but it will probably work with
+other versions too. In addition to this, you need to create an environment variable called `LAUNCH4J_HOME` which points to the folder where you have installed the application.
+
+After that you can build the exe file by running:
+```
+./gradlew launch4j
+```
+
+The generated exe file can be found in the folder _build/launch4j_
+
+### How to extend StarSUDOKU
 If you want to import the project in an IDE such as Eclipse or IntelliJ IDEA then Gradle provides a way to generate all the necessary project files.
 
 Generate Eclipse project:
@@ -65,18 +79,18 @@ Generate IntelliJ IDEA project:
 ./gradlew idea
 ```
 
-3. Running Star SUDOKU on your system
--------------------------------------
+3. Running StarSUDOKU
+---------------------
 
-To start Star SUDOKU try one of the following options:
+To start StarSUDOKU try one of the following options:
 
-* Double click on the jar File to start Star SUDOKU. If this didn't work, then you didn't associate your jar Files with your JRE.
+* For Windows users we also provide an exe file, which ist just a wrapper for the jar file. Double click on the exe file to start the application.
 
-* For Windows users we also provide an exe file, which ist just a wrapper for the JAR file. Double click on the exe file to start the application.
+* Double click on the jar File to start StarSUDOKU. If this didn't work, then you didn't associate your jar Files with your JRE.
 
 * Double click on `StarSUDOKU.bat` for Windows users or on `StarSUDOKU` for Linux users. This will start the application, but only if you have built it with Gradle first.
 
-* Open the console go to your Star SUDOKU folder and type: 
+* Open the console go to your StarSUDOKU folder and type:
 ```
 java -jar StarSUDOKU-1.0.jar
 ```
@@ -95,7 +109,7 @@ java -jar StarSUDOKU-1.0.jar
 
 \* An user custom level means that you can enter a number between 1 and 81. And next time you generate a new puzzle exactly that many numbers will be shown at the Sudoku grid. So if you enter 81 then the next puzzle will already be solved when you generate it.
 
-\*\* Number distribution in Star SUDOKU means, how are the numbers distributed when you generate a new puzzle. There are 3 numbers distributions:
+\*\* Number distribution in StarSUDOKU means, how are the numbers distributed when you generate a new puzzle. There are 3 numbers distributions:
 
 * Evenly filled 3x3 Squares - means all 3x3 Squares are evenly filled with numbers, when you start a new puzzle.
 * Evenly distributed numbers - means that all numbers from 1 to 9 are evenly distributed. So when you generate a new puzzle there will be even number of 1s, 2s, 3s and so on...
@@ -133,7 +147,7 @@ Click on the cell with the middle mouse button.
 
 ### Design mode
 
-Click on the 'Design New Sudoku' Button to start the Design Mode, by default Star Sudoku starts with Design Mode on. Enter Your numbers in the Grid and hit 'Play the designed Sudoku' button, if the game cannot find any solution to the numbers you've just entered then a dialog window is shown, otherwise You can begin solving the Sudoku puzzle.
+Click on the 'Design New Sudoku' Button to start the Design Mode, by default StarSUDOKU starts with Design Mode on. Enter Your numbers in the Grid and hit 'Play the designed Sudoku' button, if the game cannot find any solution to the numbers you've just entered then a dialog window is shown, otherwise You can begin solving the Sudoku puzzle.
 
 ### Additional options
   
@@ -156,4 +170,4 @@ If you complete the puzzle successfully you will be informed by a pop up window 
 
 Jivko Vantchev
 
-And to You for using Star SUDOKU :)
+And to You for using StarSUDOKU :)

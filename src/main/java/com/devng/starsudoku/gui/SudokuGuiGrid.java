@@ -31,8 +31,7 @@ public class SudokuGuiGrid extends JPanel implements SudokuObserver {
 
     protected boolean isPaintPause;
 
-    private class SudokuGuiCell extends JPanel
-            implements MouseListener, FocusListener {
+    private class SudokuGuiCell extends JPanel implements MouseListener, FocusListener {
 
         private Color bg;
         private Color bgSelected;
@@ -241,7 +240,7 @@ public class SudokuGuiGrid extends JPanel implements SudokuObserver {
         this.sgrid = grid;
         this.dimCell = new Dimension(52, 52);
         this.uRS = uRS;
-        this.helpingLines = true;
+        this.helpingLines = false;
 
         setLayout(new GridLayout(9, 9));
         cells = new SudokuGuiCell[9][9];
