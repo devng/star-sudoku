@@ -1,5 +1,7 @@
 # StarSUDOKU
 
+[![Build Status](https://travis-ci.org/devng/star-sudoku.svg?branch=master)](https://travis-ci.org/devng/star-sudoku)
+
 ## TL;DR
 
 Java version of the popular Sudoku puzzle game. Intends to provide an advanced user interface.
