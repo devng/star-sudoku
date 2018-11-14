@@ -511,6 +511,31 @@ public class SudokuGrid {
         }
     }
 
+    public void loadSudokuString(final String input) {
+        if (input == null || input.length() != 81) {
+            throw new IllegalArgumentException("Invalid input string: " + input);
+        }
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                final int indexChar = (y * 9) + x;
+                final int val = Character.getNumericValue(input.charAt(indexChar));
+                if (val < 0) {
+                    throw new IllegalArgumentException("Invalid input string: " + input);
+                }
+                if (val == 0) {
+                    continue;
+                }
+
+                setGridVal(x, y, val);
+                setDefault(x, y, true);
+            }
+        }
+
+        if (!isGridValid()) {
+            throw new IllegalArgumentException("Invalid sudoku grid for input string: " + input);
+        }
+    }
+
     private void randomizeArray(int[] a) {
         int tmp = 0;
         int rV = 0;
