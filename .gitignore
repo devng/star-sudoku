@@ -3,6 +3,7 @@ build/
 bin/
 war/
 *.class
+out/
 
 # Eclipse/Gradle/Idea generated files
 .classpath

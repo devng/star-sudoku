@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.5'
+	gradleVersion = '4.5.1'
 }
 
 ext {
@@ -11,7 +11,7 @@ ext {
 }
 
 // Keep this in sync with GV.VERSION
-version ='1.0'
+version ='1.0.1'
 
 repositories {
     mavenCentral()
@@ -23,8 +23,12 @@ dependencies {
     testCompile group: "org.testng", name: "testng", version: "6.14.3"
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+test {
+    useTestNG()
+}
 
 jar {
     manifest {
