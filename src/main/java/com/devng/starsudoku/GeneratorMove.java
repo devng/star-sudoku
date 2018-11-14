@@ -1,22 +1,17 @@
 /* Move created on 30.01.2006 */
 package com.devng.starsudoku;
 
-import java.util.Random;
-
 public class GeneratorMove {
 
     private int y;
     private int x;
     private int valIndex;
-    private int[] availabeMoves;
-    private Random r;
+    private int[] availableMoves;
 
-    protected GeneratorMove(int x, int y, int[] availabeMoves, int valIndex) {
+    protected GeneratorMove(int x, int y, int[] availabeMoves) {
         this.y = y;
         this.x = x;
-        this.availabeMoves = availabeMoves;
-        this.valIndex = valIndex;
-        r = new Random();
+        this.availableMoves = availabeMoves;
     }
 
     protected int getX() {
@@ -27,22 +22,14 @@ public class GeneratorMove {
         return y;
     }
 
-    protected int[] getAvailabeMoves() {
-        return availabeMoves;
-    }
-
-    protected int getValIndex() {
-        return valIndex;
-    }
-
     protected int getVal() {
-        return availabeMoves[valIndex];
+        return availableMoves[valIndex];
     }
 
     protected boolean setNextMove() {
 
         valIndex++;
-        if (valIndex <= availabeMoves.length - 1) {
+        if (valIndex <= availableMoves.length - 1) {
             return true;
         }
         valIndex--;

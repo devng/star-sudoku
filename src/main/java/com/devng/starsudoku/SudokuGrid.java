@@ -4,7 +4,6 @@ package com.devng.starsudoku;
 import com.devng.starsudoku.io.SerGrid;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class SudokuGrid {
 
@@ -15,7 +14,6 @@ public class SudokuGrid {
     public static final int MASK_NOTES = 0x0001FF00;
     public static final int MASK_IS_DEFAULT = 0x00100000;
     public static final int MASK_IS_EDITABLE = 0x00200000;
-    public static final int MASK_IS_HINT = 0x00400000;
 
     private static final int HEX1FF = 0x1ff;
 
@@ -27,8 +25,6 @@ public class SudokuGrid {
     private int[] vertical;
     private int[] horizontal;
     private int[] square;
-
-    private Random r;
 
     public SudokuGrid() {
         grid = new int[9][9];
@@ -49,8 +45,6 @@ public class SudokuGrid {
         vertical = new int[9];
         horizontal = new int[9];
         square = new int[9];
-
-        this.r = new Random();
     }
 
     public int getRealGridVal(int x, int y) {
@@ -106,29 +100,6 @@ public class SudokuGrid {
         }
     }
 
-    public static int getVal(int realGridVal) {
-        if (isDefault(realGridVal)) {
-            return getGridVal(realGridVal);
-        } else {
-            return getPuzzleVal(realGridVal);
-        }
-    }
-
-    public boolean getNote(int x, int y, int note) {
-        if ((y < 0) || (y > 8) || (x < 0) || (x > 8)) {
-            throw new IllegalArgumentException("Invalid cell address.");
-        }
-        if (note < 1 || note > 9) {
-            throw new IllegalArgumentException("Illegal note position. Note position must be form 1 to 9(inclusive).");
-        }
-
-        note = grid[x][y] & (1 << (note - 1 + 8));
-        if (note != 0) {
-            return true;
-        }
-        return false;
-    }
-
     public static boolean getNote(int realGridVal, int note) {
         note = realGridVal & (1 << (note - 1 + 8));
         if (note != 0) {
@@ -168,25 +139,6 @@ public class SudokuGrid {
 
     public static boolean isEditable(int realGridVal) {
         if ((realGridVal & MASK_IS_EDITABLE) == MASK_IS_EDITABLE) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isHint(int x, int y) {
-        if ((y < 0) || (y > 8) || (x < 0) || (x > 8)) {
-            throw new IllegalArgumentException("Invalid cell address.");
-        }
-
-        if ((grid[x][y] & MASK_IS_HINT) == MASK_IS_HINT) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean isHint(int realGridVal) {
-
-        if ((realGridVal & MASK_IS_HINT) == MASK_IS_HINT) {
             return true;
         }
         return false;
@@ -248,18 +200,6 @@ public class SudokuGrid {
             grid[x][y] |= MASK_IS_EDITABLE;
         } else {
             grid[x][y] &= ~MASK_IS_EDITABLE;
-        }
-        setChanged();
-        notifyObservers(grid[x][y]);
-    }
-
-    public void setHint(int x, int y, boolean b) {
-        if (!isEditable(x, y)) return;
-
-        if (b) {
-            grid[x][y] |= MASK_IS_HINT;
-        } else {
-            grid[x][y] &= ~MASK_IS_HINT;
         }
         setChanged();
         notifyObservers(grid[x][y]);
@@ -434,7 +374,7 @@ public class SudokuGrid {
         }
         b = null;
         if (!sortIt) {
-            randomizeArray(result);
+            Helper.randomizeArray(result);
         }
         return result;
     }
@@ -458,12 +398,12 @@ public class SudokuGrid {
 
         int[] moves = getAvailabeValuesField(x, y, false);
         if (moves.length > 0) {
-            return new GeneratorMove(x, y, moves, 0);
+            return new GeneratorMove(x, y, moves);
         }
         return null;
     }
 
-    //OBSERVERS MANEGMANT
+    //OBSERVERS MANAGEMENT
     public void addObserver(SudokuObserver so) {
         observers.add(so);
     }
@@ -511,7 +451,25 @@ public class SudokuGrid {
         }
     }
 
-    public void loadSudokuString(final String input) {
+    @Override
+    public String toString() {
+        return toString(true);
+    }
+
+    public String toString(boolean pretty) {
+        StringBuilder sb = new StringBuilder(200);
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (pretty) sb.append("|");
+                sb.append(getGridVal(j, i));
+            }
+            if (pretty) sb.append("|\n");
+        }
+        return sb.toString();
+    }
+
+    public static SudokuGrid createFromString(final String input) {
+        final SudokuGrid grid = new SudokuGrid();
         if (input == null || input.length() != 81) {
             throw new IllegalArgumentException("Invalid input string: " + input);
         }
@@ -526,36 +484,15 @@ public class SudokuGrid {
                     continue;
                 }
 
-                setGridVal(x, y, val);
-                setDefault(x, y, true);
+                grid.setGridVal(x, y, val);
+                grid.setDefault(x, y, true);
             }
         }
 
-        if (!isGridValid()) {
+        if (!grid.isGridValid()) {
             throw new IllegalArgumentException("Invalid sudoku grid for input string: " + input);
         }
-    }
 
-    private void randomizeArray(int[] a) {
-        int tmp = 0;
-        int rV = 0;
-        for (int i = 0; i < a.length; i++) {
-            rV = r.nextInt(a.length - i);
-            tmp = a[a.length - i - 1];
-            a[a.length - i - 1] = a[rV];
-            a[rV] = tmp;
-        }
-    }
-
-    public String toString() {
-        StringBuilder sb = new StringBuilder(200);
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                sb.append("|");
-                sb.append(getGridVal(j, i));
-            }
-            sb.append("|\n");
-        }
-        return sb.toString();
+        return grid;
     }
 }

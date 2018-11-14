@@ -20,9 +20,9 @@ public class StarSUDOKUMain {
         }
         
         final String jVer = System.getProperty("java.version");
-        if(jVer.compareToIgnoreCase("1.7.0") < 0) {
+        if(jVer.compareToIgnoreCase("1.8.0") < 0) {
             String errorMsg = "<HTML><FONT COLOR=\"RED\">Your Java version is too old!</FONT><BR><BR> " +
-                    "Star SUDOKU requires JAVA Runtime Environment JRE 1.7.0 / JRE 7 or above.<BR> " +
+                    "Star SUDOKU requires JAVA Runtime Environment JRE 1.8.0 / JRE 8 or above.<BR> " +
                     "Please download the latest JRE at <FONT COLOR=\"#0000ff\">www.java.com</FONT></HTML>";
             JOptionPane.showMessageDialog(null,
                   errorMsg, "Fatal error",
